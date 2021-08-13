@@ -21,9 +21,6 @@ Jr = (1/3)*mr*Lr*Lr
 Dr = 0
 Dp = 0
 
-# Time step 
-h = 0.025       # seconds
-
 # System dynamics 
 def pendulum_dynamics(current_state, input_voltage):
     """
@@ -34,9 +31,9 @@ def pendulum_dynamics(current_state, input_voltage):
 
     x1_dot = x3
     x2_dot = x4
-    x3_dot = -(2*(8*Dr*Jp*Rm*x3 - 2*Kt*Lp**2*Vm*mp - 8*Jp*Kt*Vm + 8*Jp*Km*Kt*x3 + 2*Dr*Lp**2*Rm*mp*x3 + 2*Km*Kt*Lp**2*mp*x3 + Lp**3*Lr*Rm*mp**2*x4**2*sin(x2) + 4*Dp*Lp*Lr*Rm*mp*x4*cos(x2) - Lp**3*Lr*Rm*mp**2*x3**2*cos(x2)**2*sin(x2) - 2*Lp**2*Lr*Rm*g*mp**2*cos(x2)*sin(x2) + 4*Jp*Lp*Lr*Rm*mp*x4**2*sin(x2) + Lp**4*Rm*mp**2*x3*x4*cos(x2)*sin(x2) + 4*Jp*Lp**2*Rm*mp*x3*x4*cos(x2)*sin(x2)))/(Rm*(Lp**4*mp**2 + 16*Jp*Jr - Lp**4*mp**2*cos(x2)**2 + 4*Lp**2*Lr**2*mp**2 + 4*Jp*Lp**2*mp + 16*Jp*Lr**2*mp + 4*Jr*Lp**2*mp - 4*Lp**2*Lr**2*mp**2*cos(x2)**2 - 4*Jp*Lp**2*mp*cos(x2)**2))
-    x4_dot = -(16*Dp*Jr*Rm*x4 - 2*Lp**3*Rm*g*mp**2*sin(x2) + 4*Dp*Lp**2*Rm*mp*x4 + 16*Dp*Lr**2*Rm*mp*x4 - 8*Jr*Lp*Rm*g*mp*sin(x2) + Lp**4*Rm*mp**2*x3**2*cos(x2)**3*sin(x2) + 2*Lp**3*Rm*g*mp**2*cos(x2)**2*sin(x2) - 4*Dp*Lp**2*Rm*mp*x4*cos(x2)**2 - Lp**4*Rm*mp**2*x3**2*cos(x2)*sin(x2) - 8*Lp*Lr**2*Rm*g*mp**2*sin(x2) - 8*Kt*Lp*Lr*Vm*mp*cos(x2) + 8*Dr*Lp*Lr*Rm*mp*x3*cos(x2) + 8*Km*Kt*Lp*Lr*mp*x3*cos(x2) - 4*Lp**2*Lr**2*Rm*mp**2*x3**2*cos(x2)*sin(x2) + 4*Lp**2*Lr**2*Rm*mp**2*x4**2*cos(x2)*sin(x2) - 4*Jr*Lp**2*Rm*mp*x3**2*cos(x2)*sin(x2) + 4*Lp**3*Lr*Rm*mp**2*x3*x4*cos(x2)**2*sin(x2))/(Rm*(Lp**4*mp**2 + 16*Jp*Jr - Lp**4*mp**2*cos(x2)**2 + 4*Lp**2*Lr**2*mp**2 + 4*Jp*Lp**2*mp + 16*Jp*Lr**2*mp + 4*Jr*Lp**2*mp - 4*Lp**2*Lr**2*mp**2*cos(x2)**2 - 4*Jp*Lp**2*mp*cos(x2)**2))
- 
+    x3_dot = -2*(2*Lp**3*Lr*Rm*mp**2*x3**2*cos(x2)**2*sin(x2) - 2*Lp**2*Lr*Rm*g*mp**2*cos(x2)*sin(x2) - (Lp**3*Lr*Rm*mp**2 + 4*Jp*Lp*Lr*Rm*mp)*x4**2*sin(x2) + 8*Dr*Jp*Rm - 8*Jp*Vm*Km + 2*(Dr*Lp**2*Rm - Lp**2*Vm*Km)*mp + 2*(Lp**2*Km**2*mp + 4*Jp*Km**2)*x3 - (4*Dp*Lp*Lr*Rm*mp*cos(x2) - (Lp**4*Rm*mp**2 + 4*Jp*Lp**2*Rm*mp)*x3*cos(x2)*sin(x2))*x4)/((Lp**4 + 4*Lp**2*Lr**2)*Rm*mp**2 + 16*Jp*Jr*Rm + 4*((Jp + Jr)*Lp**2 + 4*Jp*Lr**2)*Rm*mp - (4*Jp*Lp**2*Rm*mp + (Lp**4 + 4*Lp**2*Lr**2)*Rm*mp**2)*cos(x2)**2)     
+    x4_dot = -2*(2*Lp**2*Lr**2*Rm*mp**2*x4**2*cos(x2)*sin(x2) - 4*Lp*Lr*Km**2*mp*x3*cos(x2) + (Lp**4*Rm*mp**2*cos(x2)**3 - (4*Jr*Lp**2*Rm*mp + (Lp**4 + 4*Lp**2*Lr**2)*Rm*mp**2)*cos(x2))*x3**2*sin(x2) - 4*(Dr*Lp*Lr*Rm - Lp*Lr*Vm*Km)*mp*cos(x2) - 2*(Lp**3*Lr*Rm*mp**2*x3*cos(x2)**2*sin(x2) + Dp*Lp**2*Rm*mp*cos(x2)**2 - 4*Dp*Jr*Rm - (Dp*Lp**2 + 4*Dp*Lr**2)*Rm*mp)*x4 - (Lp**3*Rm*g*mp**2*cos(x2)**2 - 4*Jr*Lp*Rm*g*mp - (Lp**3*g + 4*Lp*Lr**2*g)*Rm*mp**2)*sin(x2))/((Lp**4 + 4*Lp**2*Lr**2)*Rm*mp**2 + 16*Jp*Jr*Rm + 4*((Jp + Jr)*Lp**2 + 4*Jp*Lr**2)*Rm*mp - (4*Jp*Lp**2*Rm*mp + (Lp**4 + 4*Lp**2*Lr**2)*Rm*mp**2)*cos(x2)**2)     
+    
     new_state = np.array([x1_dot, x2_dot, x3_dot, x4_dot])
 
     return new_state
@@ -56,12 +53,6 @@ def rk4_integrate(x, u, h):
     rk4_sol = x + (h/6)*(k1+2*k2+2*k3+k4)
 
     return rk4_sol
-
-# Basic simulation i guess hahahheh
-
-T = 50 #seconds - length of simulation 
-
-initial_state = np.array([0, 0.1, 0, 0]) #starting at just theta != 0 gives nothing lmao 
 
 def simple_simulation(initial_state, input_u, time_length, time_step):
     """
@@ -98,6 +89,11 @@ def simple_simulation(initial_state, input_u, time_length, time_step):
     plt.show()
 
 
+# Basic simulation i guess hahahheh
+T = 50                                          # seconds - length of simulation
+h = 0.025                                       # seconds - time step 
+initial_state = np.array([2, 0.1, 0, 0])      # starting - just theta != 0 gives nothing lmao 
+input_u = 0
 
-simple_simulation(initial_state, 0, T, h)
+simple_simulation(initial_state, input_u, T, h)
 
