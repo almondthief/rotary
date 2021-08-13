@@ -80,19 +80,19 @@ def simple_simulation(initial_state, input_u, time_length, time_step):
     plt.plot(sim_data[:, 0], sim_data[:, 3])
     plt.plot(sim_data[:, 0], sim_data[:, 4])
     plt.legend((r'$\theta$', r'$\alpha$', r'$\dot{\theta}$', r'$\dot{\alpha}$'),
-           loc='upper center', shadow=True)
+           loc='upper right', shadow=True)
     plt.show()
 
-    plt.plot(sim_data[:, 0], sim_data[:, 1])
+    plt.plot(sim_data[:, 0], sim_data[:, 2])
     plt.hlines(np.pi, 0, T, linestyles='dashed')
     plt.hlines(-np.pi, 0, T, linestyles='dashed')
     plt.show()
 
 
 # Basic simulation i guess hahahheh
-T = 50                                          # seconds - length of simulation
-h = 0.025                                       # seconds - time step 
-initial_state = np.array([2, 0.1, 0, 0])      # starting - just theta != 0 gives nothing lmao 
+T = 50                                                  # seconds - length of simulation
+h = 0.025                                               # seconds - time step 
+initial_state = np.array([0, np.pi - 0.1, 0, 0])        # starting
 input_u = 0
 
 simple_simulation(initial_state, input_u, T, h)
