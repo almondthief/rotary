@@ -1,5 +1,5 @@
 # Rotary Inverted Pendulum
-Honours Thesis Python Code. Simulation and control of a Rotary Inverted Pendulum system (RIP) using Nonlinear Model Predictive Control (NMPC) with Iterative Dynamic Programming (IDP) as the optimisation algorithm adapted and used. 
+Jupyter notebook Python code for Honours Thesis. Simulation and control of a Rotary Inverted Pendulum system (RIP) using Nonlinear Model Predictive Control (NMPC) with Iterative Dynamic Programming (IDP) as the optimisation algorithm adapted and used. 
 
 List of jupyter notebooks provided:
 
