@@ -3,3 +3,6 @@ scipy
 pandas
 matplotlib
 csv
+glob
+moviepy
+mayavi
