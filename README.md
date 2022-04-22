@@ -9,5 +9,6 @@ Rotary Inverted Pendulum NMPC Scheme  | Contains all system dynamics, control al
 Plots | Produces useful graphs for cost function analysis and simulation result data
 IDP Parameter Testing | Scripts used for testing IDP parameters
 IDP Parameter Plots | Produces plots to better analyse IDP parameter choices
+Mayavi 3D Animation Plots | Produces 3D animations of specified simulation run
 
 Some .csv files from test simulations and graphs of the results added as well. 
